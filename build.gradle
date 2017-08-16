@@ -2,13 +2,21 @@
 
 buildscript {
     ext.kotlin_version = '1.1.4'
+    ext.atlas_version = '2.3.3.rc1'
     repositories {
         jcenter()
+        maven {
+            url "http://maven.aliyun.com/nexus/content/groups/public"
+        }
+    }
+    configurations.all {
+        resolutionStrategy.cacheDynamicVersionsFor 0, 'seconds'
+        resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.3'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-
+        classpath "com.taobao.android:atlasplugin:$atlas_version"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -17,6 +25,9 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
+        maven {
+            url "http://maven.aliyun.com/nexus/content/groups/public"
+        }
     }
     ext {
         // Lib config
