@@ -1,4 +1,4 @@
-package com.horsege.atlastest.view.extensions
+package com.horsege.middleawaylibrary.view.extensions
 
 import android.graphics.Color
 import android.view.ViewManager
@@ -12,6 +12,6 @@ import org.jetbrains.anko.textView
  */
 fun ViewManager.singleTxtView(displayTxt : String) = textView(displayTxt) {
     textSize = px2sp(30)
-    textColor = Color.WHITE
+    textColor = Color.BLACK
     singleLine = true
 }

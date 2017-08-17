@@ -1,4 +1,4 @@
-package com.horsege.atlastest.view.component
+package com.horsege.middleawaylibrary.view.component
 
 import android.view.View
 import android.view.ViewGroup

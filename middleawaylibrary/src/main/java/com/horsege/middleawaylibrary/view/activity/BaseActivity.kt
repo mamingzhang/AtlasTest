@@ -1,9 +1,8 @@
-package com.horsege.atlastest.view.activity
+package com.horsege.middleawaylibrary.view.activity
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.support.v4.app.FragmentActivity
-import com.horsege.atlastest.view.component.ActivityAnkoComponent
+import com.horsege.middleawaylibrary.view.component.ActivityAnkoComponent
 import org.jetbrains.anko.setContentView
 
 /**

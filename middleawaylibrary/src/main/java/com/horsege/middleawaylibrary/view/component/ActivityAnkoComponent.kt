@@ -1,4 +1,4 @@
-package com.horsege.atlastest.view.component
+package com.horsege.middleawaylibrary.view.component
 
 import android.support.v4.app.FragmentActivity
 import org.jetbrains.anko.AnkoComponent
