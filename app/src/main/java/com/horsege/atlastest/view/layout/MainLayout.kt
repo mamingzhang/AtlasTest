@@ -1,9 +1,11 @@
 package com.horsege.atlastest.view.layout
 
 import android.support.design.widget.BottomNavigationView
+import com.horsege.atlastest.R
 import com.horsege.atlastest.view.activity.MainActivity
 import com.horsege.middleawaylibrary.view.component.ActivityAnkoComponent
 import com.horsege.middleawaylibrary.view.extensions.bottomNavigationView
+import com.horsege.middleawaylibrary.view.extensions.itemMenu
 import org.jetbrains.anko.*
 
 /**
