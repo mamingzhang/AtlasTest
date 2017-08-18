@@ -8,7 +8,7 @@ import org.jetbrains.anko.setContentView
 /**
  * Created by mamingzhang on 2017/8/16.
  */
-abstract class BaseActivity<out UI : ActivityAnkoComponent<out FragmentActivity>> : FragmentActivity() {
+abstract class BaseActivity<out UI : ActivityAnkoComponent<out FragmentActivity>> : RBaseActivity() {
     abstract val ui: UI
 
     override fun onCreate(savedInstanceState: Bundle?) {

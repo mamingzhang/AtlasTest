@@ -10,6 +10,8 @@ import org.jetbrains.anko.*
 
 /**
  * Created by mamingzhang on 2017/8/16.
+ *
+ * 暂时不用
  */
 class MainLayout : ActivityAnkoComponent<MainActivity> {
     lateinit var bottomNavigationView : BottomNavigationView
