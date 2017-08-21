@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MiddleAwayLibrary</string>
+
+    <string name="drawerlayout_open">Open Drawer Layout</string>
+    <string name="drawerlayout_close">Close Drawer Layout</string>
+
 </resources>
