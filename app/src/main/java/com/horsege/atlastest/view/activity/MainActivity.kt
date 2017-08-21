@@ -1,12 +1,16 @@
 package com.horsege.atlastest.view.activity
 
 import android.os.Bundle
+import android.support.design.widget.BottomNavigationView
+import android.support.design.widget.NavigationView
+import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.Toolbar
 import com.horsege.atlastest.R
 import com.horsege.middleawaylibrary.view.activity.RBaseActivity
 import org.jetbrains.anko.find
+import org.jetbrains.anko.toast
 
 class MainActivity : RBaseActivity() {
 
@@ -21,6 +25,16 @@ class MainActivity : RBaseActivity() {
 
         initToolBar()
         initDrawerLayout()
+        initBottomNavView()
+        initNavView()
+    }
+
+    override fun onBackPressed() {
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START)
+        } else {
+            super.onBackPressed()
+        }
     }
 
     override fun onDestroy() {
@@ -40,5 +54,29 @@ class MainActivity : RBaseActivity() {
                 this, drawer, toolbar, R.string.drawerlayout_open, R.string.drawerlayout_close)
         drawer.addDrawerListener(toggle)
         toggle.syncState()
+    }
+
+    private fun initBottomNavView(): Unit {
+        find<BottomNavigationView>(R.id.bottomNavView).setOnNavigationItemSelectedListener {
+            when(it.itemId) {
+                R.id.first_tab -> toast("First Tab")
+                R.id.second_tab -> toast("Second Tab")
+            }
+
+            return@setOnNavigationItemSelectedListener true
+        }
+    }
+
+    private fun initNavView() : Unit {
+        find<NavigationView>(R.id.navigationView).setNavigationItemSelectedListener {
+            when(it.itemId) {
+                R.id.title1 -> toast("Title1")
+                else -> toast("Else")
+            }
+
+            drawer.closeDrawer(GravityCompat.START)
+
+            return@setNavigationItemSelectedListener true
+        }
     }
 }
