@@ -28,6 +28,7 @@ dependencies {
     })
 
     compile project(':middleawaylibrary')
+    compile project(':splashscreen')
 
     compile 'com.android.support:appcompat-v7:26.+'
     testCompile 'junit:junit:4.12'

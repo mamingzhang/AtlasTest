@@ -1,4 +1,4 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
@@ -7,7 +7,6 @@ android {
     buildToolsVersion "26.0.1"
 
     defaultConfig {
-        applicationId "com.horsege.splashscreen"
         minSdkVersion 14
         targetSdkVersion 26
         versionCode 1
