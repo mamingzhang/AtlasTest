@@ -1,5 +1,6 @@
 package com.horsege.atlastest.view.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.design.widget.NavigationView
@@ -7,8 +8,10 @@ import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.Toolbar
+import android.view.ViewGroup
 import com.horsege.atlastest.R
 import com.horsege.middleawaylibrary.view.activity.RBaseActivity
+import com.taobao.android.ActivityGroupDelegate
 import org.jetbrains.anko.find
 import org.jetbrains.anko.toast
 
@@ -19,6 +22,10 @@ class MainActivity : RBaseActivity() {
     private lateinit var drawer: DrawerLayout
     private lateinit var toggle: ActionBarDrawerToggle
 
+    private lateinit var actContainer: ViewGroup
+
+    private lateinit var actGroupCompat : ActivityGroupDelegate
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -27,6 +34,12 @@ class MainActivity : RBaseActivity() {
         initDrawerLayout()
         initBottomNavView()
         initNavView()
+
+        actContainer = find(R.id.content)
+
+        actGroupCompat = ActivityGroupDelegate(this, savedInstanceState)
+
+        switchToActivity("FirstBundle", "com.horsege.firstbundle.FirstBundleActivity")
     }
 
     override fun onBackPressed() {
@@ -78,5 +91,11 @@ class MainActivity : RBaseActivity() {
 
             return@setNavigationItemSelectedListener true
         }
+    }
+
+    fun switchToActivity(key: String, activityName: String) {
+        val intent = Intent()
+        intent.setClassName(baseContext, activityName)
+        actGroupCompat.startChildActivity(actContainer, key, intent)
     }
 }

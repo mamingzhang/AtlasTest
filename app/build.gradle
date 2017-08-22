@@ -1,6 +1,28 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.taobao.atlas'
+
+group = 'com.horsege.atlastest'
+version = getEnvValue("versionName", "1.0.0");
+def apVersion = getEnvValue("apVersion", "");
+
+repositories {
+    mavenLocal()
+    jcenter()
+}
+
+String getEnvValue(key, defValue) {
+    def val = System.getProperty(key);
+    if (null != val) {
+        return val;
+    }
+    val = System.getenv(key);
+    if (null != val) {
+        return val;
+    }
+    return defValue;
+}
 
 android {
     compileSdkVersion 26
@@ -18,25 +40,82 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        debug {
+            ndk {
+                abiFilters "armeabi"
+            }
+        }
+    }
+}
+
+atlas {
+    atlasEnabled true
+
+    tBuildConfig {
+        autoStartBundles = ['com.horsege.firstbundle'] //自启动bundle配置
+        preLaunch = 'com.horsege.atlastest.AtlastTestPreLauncher'
+        classInject false
+    }
+
+    manifestOptions {
+        addAtlasProxyComponents true
+    }
+
+
+    patchConfigs {
+        debug {
+            createTPatch true
+        }
+    }
+
+
+    buildTypes {
+        debug {
+            if (apVersion) {
+                baseApDependency "com.horsege.android.atlastest:AP-debug:${apVersion}@ap"
+                patchConfig patchConfigs.debug
+            }
+        }
     }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
+
+    compile('com.taobao.android:atlas_core:5.0.7.30@aar') {
+
+        transitive = true
+    }
 
     compile project(':middleawaylibrary')
     compile project(':splashscreen')
+    compile project(':activitygroupcompat')
+
+    bundleCompile project(':firstbundle')
 
     compile 'com.android.support:appcompat-v7:26.+'
     testCompile 'junit:junit:4.12'
+
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     compile "org.jetbrains.anko:anko:$anko_version"
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
     compile "com.google.dagger:dagger:$daggerVersion"
 }
-repositories {
-    mavenCentral()
+
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+
+publishing {
+    repositories {
+        mavenLocal()
+    }
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            artifact "${project.buildDir}/outputs/apk/${project.name}-debug.ap"
+            artifactId "AP-debug"
+        }
+    }
 }
