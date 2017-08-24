@@ -1,5 +1,6 @@
 include ':activitygroupcompat'
 include ':middleawaylibrary'
 include ':firstbundle'
+include ':secondbundle'
 include ':splashscreen'
 include ':app'

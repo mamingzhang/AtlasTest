@@ -24,7 +24,7 @@ class MainActivity : RBaseActivity() {
 
     private lateinit var actContainer: ViewGroup
 
-    private lateinit var actGroupCompat : ActivityGroupDelegate
+    private lateinit var actGroupCompat: ActivityGroupDelegate
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +40,7 @@ class MainActivity : RBaseActivity() {
         actGroupCompat = ActivityGroupDelegate(this, savedInstanceState)
 
         switchToActivity("FirstBundle", "com.horsege.firstbundle.FirstBundleActivity")
+//        switchToActivity("SecondBundle", "com.horsege.secondbundle.SecondBundleActivity")
     }
 
     override fun onBackPressed() {
@@ -71,18 +72,24 @@ class MainActivity : RBaseActivity() {
 
     private fun initBottomNavView(): Unit {
         find<BottomNavigationView>(R.id.bottomNavView).setOnNavigationItemSelectedListener {
-            when(it.itemId) {
-                R.id.first_tab -> toast("First Tab")
-                R.id.second_tab -> toast("Second Tab")
+            when (it.itemId) {
+                R.id.first_tab -> {
+                    toast("First Tab")
+                    switchToActivity("FirstBundle", "com.horsege.firstbundle.FirstBundleActivity")
+                }
+                R.id.second_tab -> {
+                    toast("Second Tab")
+                    switchToActivity("SecondBundle", "com.horsege.secondbundle.SecondBundleActivity")
+                }
             }
 
             return@setOnNavigationItemSelectedListener true
         }
     }
 
-    private fun initNavView() : Unit {
+    private fun initNavView(): Unit {
         find<NavigationView>(R.id.navigationView).setNavigationItemSelectedListener {
-            when(it.itemId) {
+            when (it.itemId) {
                 R.id.title1 -> toast("Title1")
                 else -> toast("Else")
             }
