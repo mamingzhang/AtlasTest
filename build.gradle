@@ -1,8 +1,8 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '1.1.4'
-    ext.atlas_version = '2.3.3.rc1'
+    ext.kotlin_version = '1.2.21'
+    ext.atlas_version = '2.3.3.rc41'
     repositories {
         jcenter()
         maven {
@@ -31,7 +31,7 @@ allprojects {
     }
     ext {
         // Lib config
-        anko_version = '0.10.1'
+        anko_version = '0.10.4'
         daggerVersion = "2.11"
     }
 }
